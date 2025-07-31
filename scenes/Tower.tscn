@@ -1,12 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3rlhippgx6td"]
+[gd_scene load_steps=4 format=3 uid="uid://d3rlhippgx6td"]
+
+[ext_resource type="Script" uid="uid://xj37xmd2al2l" path="res://scripts/tower.gd" id="1_kl3vk"]
+[ext_resource type="PackedScene" uid="uid://brq4inq4p1d6t" path="res://models/default_tower.fbx" id="2_02lgm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w1c34"]
 
 [node name="Tower" type="Node3D"]
+script = ExtResource("1_kl3vk")
+range = null
+fire_rate = null
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="default_tower" parent="." instance=ExtResource("2_02lgm")]
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_w1c34")
+
+[node name="FireTimer" type="Timer" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96352, 1.79749, 0)
