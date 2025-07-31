@@ -1,19 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3rlhippgx6td"]
+[gd_scene load_steps=6 format=3 uid="uid://d3rlhippgx6td"]
 
 [ext_resource type="Script" uid="uid://xj37xmd2al2l" path="res://scripts/tower.gd" id="1_kl3vk"]
 [ext_resource type="PackedScene" uid="uid://brq4inq4p1d6t" path="res://models/default_tower.fbx" id="2_02lgm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w1c34"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_kl3vk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl3vk"]
+transparency = 1
+no_depth_test = true
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(1, 0.32, 0.32, 0.470588)
+disable_receive_shadows = true
+
 [node name="Tower" type="Node3D"]
 script = ExtResource("1_kl3vk")
-range = null
-fire_rate = null
+range = 50.0
 
 [node name="default_tower" parent="." instance=ExtResource("2_02lgm")]
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_w1c34")
@@ -22,3 +31,10 @@ shape = SubResource("SphereShape3D_w1c34")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96352, 1.79749, 0)
+
+[node name="RangePreview" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0201836, -0.0209875, -0.0135098)
+cast_shadow = 0
+ignore_occlusion_culling = true
+mesh = SubResource("SphereMesh_kl3vk")
+surface_material_override/0 = SubResource("StandardMaterial3D_kl3vk")
